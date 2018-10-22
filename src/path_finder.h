@@ -3,9 +3,8 @@
 
 struct node
 {
-    char value;
-    struct node neighbor[8];
-    struct vector2 pos;
+    int type;
+    struct vector2 next;
 };
 
 
