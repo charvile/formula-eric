@@ -1,1 +1,22 @@
-test
+Key : P : Progress | X : Done
+
+[ ] Setup
+    [ ] Read subject
+    [ ] Setup git
+    [ ] Run a first test with make run
+    [ ] Decide file architecture
+    [ ] Divide and conquer
+
+[ ] Granny
+    [ ] Decide proper algorithm
+    [ ] Implement algorithm
+    [ ] Test on provided maps
+    [ ] Create custom maps
+    [ ] Test on custom maps
+    [ ] Submit for day1
+
+
+===============================================================================
+[ ] Bugs
+    [ ]
+    [ ]
