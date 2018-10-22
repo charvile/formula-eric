@@ -1,20 +1,26 @@
 Key : P : Progress | X : Done
 
 [ ] Setup
-    [ ] Read subject
-    [ ] Setup git
-    [ ] Run a first test with make run
+    [X] Read subject
+    [X] Setup git
+    [X] Run a first test with make run
     [ ] Decide file architecture
     [ ] Divide and conquer
 
 [ ] Granny
-    [ ] Decide proper algorithm
-    [ ] Implement algorithm
-    [ ] Test on provided maps
+    [P] Decide proper algorithm
+    [P] Implement algorithm
+    [X] Test on provided maps
     [ ] Create custom maps
     [ ] Test on custom maps
-    [ ] Submit for day1
+    [X] Submit for day1
 
+[ ] A star algorithm
+    [ ] Create structure
+    [ ] Create matrix
+    [ ] Implement algorithm
+    [ ] Test and print algorithm
+    [ ] Adapt car behavior to shortest path
 
 ===============================================================================
 [ ] Bugs
