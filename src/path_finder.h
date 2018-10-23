@@ -7,9 +7,9 @@ struct node
     struct vector2 next;
 };
 
+struct node **map_init(struct map *map);
 
-
-
+struct node **map;
 
 
 

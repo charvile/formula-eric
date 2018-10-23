@@ -1,5 +1,6 @@
 #include "control.h"
 #include <math.h>
+#include "path_finder.h"
 
 int is_on_starting_point(struct car *car)
 {
@@ -47,6 +48,10 @@ static int is_facing_road_long_term(struct car *car)
 
 enum move update(struct car *car)
 {
+    if (!map)
+    {
+        map = map_init(car->map);
+    }
     if (is_facing_road(car) && is_facing_road_long_term(car))
     {
         //if (car->speed.x > 0.05f || car->speed.y > 0.05f)
