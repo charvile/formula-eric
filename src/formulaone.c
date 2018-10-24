@@ -31,10 +31,7 @@ static int is_facing_obj(struct car *car, enum floortype obj, int distance)
     return 1;
 }
 
-static int is_at_desired_angle(struct car *car, float angle)
-{
-
-}
+int is_at_desired_angle(struct car *car, float angle);
 
 enum move update(struct car *car)
 {
