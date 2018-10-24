@@ -19,11 +19,19 @@ struct node **map_init(struct map *map)
     
     for (int i = 0; i < mheight; i++)
     {
-        nodes[i] = malloc(sizeof(struct node)*mwidth);
+        nodes[i] = malloc(sizeof(struct node) * mwidth);
         for (int j = 0; j < mwidth; j++)
         {
-            nodes[i][j].type = (map_get_floor(map, i, j) == ROAD);
+            nodes[i][j].type = (map_get_floor(map, j, i) == ROAD);
         }
+    }
+    for (int i = 0; i < mheight; i++)
+    {
+        for (int j = 0; j < mwidth; j++)
+        {
+           fprintf(stdout," %d",nodes[i][j].type);
+        }
+        fprintf(stdout,"\n");
     }
     return nodes;
 }

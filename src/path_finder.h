@@ -3,7 +3,7 @@
 
 struct node
 {
-    int type;
+    char type;
     struct vector2 next;
 };
 
