@@ -4,13 +4,16 @@
 struct node
 {
     char type;
-    struct vector2 next;
+    char open; /* 0 -> not seen | 1 -> closed | 2 -> open */
+    struct vector2 next; /* Position in matrix of following node*/
+    struct vector2 previous; /* Position in matrix of previous node*/
+    struct vector2 pos; /* Position on the map*/
+    int i; /* Indexes in the matrix */ 
+    int j;
 };
 
 struct node **map_init(struct map *map);
 
 struct node **map;
-
-
 
 #endif /* PATH_FINDER_H */
