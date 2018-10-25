@@ -1,7 +1,7 @@
 #ifndef PATH_FINDER_H
 #define PATH_FINDER_H
 
-#include "contol.h"
+#include "control.h"
 
 struct node
 {
