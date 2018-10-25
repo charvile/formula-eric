@@ -39,12 +39,14 @@ void find_shortest_path(struct node start, struct node finish, struct map *m)
     //int counter = 0;
     while (1)
     {
-        current_node.type = 'V';
+        map[current_node.i][current_node.j].type = 'V';
+        //current_node.type = 'V';
         if ((current_node.pos.x != finish.pos.x && current_node.pos.y != finish.pos.y))
         {
             break;
         }
         printf("Current node : (%f;%f)\n", current_node.pos.x, current_node.pos.y);
+        printf("Current node : (%d;%d)\n", current_node.i, current_node.j);
         current_node.open = 2;
         for (int a = -1; a <= 1; a++)
         {
@@ -52,7 +54,8 @@ void find_shortest_path(struct node start, struct node finish, struct map *m)
             {
                 if (a == 0 && b == 0)
                 {
-                    continue;
+                    //printf("CONDITION ATTEINTE\n");
+                    //continue;
                 }
                 
                 if (current_node.i + a >= 0 && current_node.j + b >= 0 
@@ -71,14 +74,14 @@ void find_shortest_path(struct node start, struct node finish, struct map *m)
                 }
             }
         }
-        //if (current_node.j + 1 < m->width)
-        //{
-            current_node = map[current_node.i][current_node.j + 1];
-        //}
-        //else
-        //{
-          //  break;
-        //}
+        if (current_node.j + 1 < m->width)
+        {
+        current_node = map[current_node.i][current_node.j + 1];
+        }
+        else
+        {
+            break;
+        }
         //counter++;
 
     }   
