@@ -1,6 +1,8 @@
 #ifndef PATH_FINDER_H
 #define PATH_FINDER_H
 
+#include "contol.h"
+
 struct node
 {
     char type;
