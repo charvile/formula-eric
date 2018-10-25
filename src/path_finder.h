@@ -7,8 +7,8 @@ struct node
 {
     char type;
     char open; /* 0 -> not seen | 1 -> closed | 2 -> open */
-    struct vector2 next; /* Position in matrix of following node*/
-    struct vector2 previous; /* Position in matrix of previous node*/
+    struct node *next; /* Position in matrix of following node*/
+    struct node *previous; /* Position in matrix of previous node*/
     struct vector2 pos; /* Position on the map*/
     int i; /* Indexes in the matrix */ 
     int j;
