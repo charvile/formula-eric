@@ -39,13 +39,13 @@ void find_shortest_path(struct node start, struct node finish, struct map *m)
     //int counter = 0;
     while (1)
     {
-        map[current_node.i][current_node.j].type = 'V';
+        g_map[current_node.i][current_node.j].type = 'V';
         //current_node.type = 'V';
         if ((current_node.pos.x != finish.pos.x && current_node.pos.y != finish.pos.y))
         {
             break;
         }
-        printf("Current node : (%f;%f)\n", current_node.pos.x, current_node.pos.y);
+        //printf("Current node : (%f;%f)\n", current_node.pos.x, current_node.pos.y);
         printf("Current node : (%d;%d)\n", current_node.i, current_node.j);
         current_node.open = 2;
         for (int a = -1; a <= 1; a++)
@@ -60,12 +60,10 @@ void find_shortest_path(struct node start, struct node finish, struct map *m)
                 
                 if (current_node.i + a >= 0 && current_node.j + b >= 0 
                     && current_node.i + a < m->width
-                    && current_node.j + b < m->width 
-                    && current_node.i + a < m->height
-                    && current_node.j + b < m->height) 
+                    && current_node.j + b < m->width)
                 {
                     printf("Current node : %d;%d\n", current_node.i, current_node.j);
-                    map[current_node.i + a][current_node.j + b].type = 'V';
+                    g_map[current_node.i + a][current_node.j + b].type = 'V';
                     //if (temp.type == '#' || temp.open == 1)
                     //{
                         //continue;
@@ -76,7 +74,7 @@ void find_shortest_path(struct node start, struct node finish, struct map *m)
         }
         if (current_node.j + 1 < m->width)
         {
-        current_node = map[current_node.i][current_node.j + 1];
+            current_node = g_map[current_node.i][current_node.j + 1];
         }
         else
         {
@@ -138,7 +136,7 @@ struct node **map_init(struct map *m)
             }
         }
     }
-    map = nodes;
+    g_map = nodes;
     find_shortest_path(start, finish, m);
 
     for (int i = 0; i < mheight; i++)

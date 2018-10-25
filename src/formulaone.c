@@ -35,9 +35,9 @@ int is_at_desired_angle(struct car *car, float angle);
 
 enum move update(struct car *car)
 {
-    if (!map)
+    if (!g_map)
     {
-        map = map_init(car->map);
+        map_init(car->map);
     }
     if (is_facing_obj(car, ROAD, 1) && is_facing_obj(car, ROAD, 2))
     {

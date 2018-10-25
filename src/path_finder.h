@@ -14,6 +14,6 @@ struct node
 
 struct node **map_init(struct map *map);
 
-struct node **map;
+struct node **g_map;
 
 #endif /* PATH_FINDER_H */
