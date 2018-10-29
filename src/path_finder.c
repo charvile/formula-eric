@@ -22,7 +22,8 @@ void find_shortest_path(struct node start, struct node finish, struct map *m)
         }
         //printf("Current node : (%f;%f)\n", current_node.pos.x, current_node.pos.y);
         printf("Current node : (%d;%d)\n", current_node.i, current_node.j);
-        current_node.open = 2;
+        g_map[current_node.i][current_node.j].open = 2;
+        //current_node.open = 2;
 
         struct node *neighbors = malloc(sizeof(*neighbors) * 8);
         /* TODO : check return value here*/
@@ -59,17 +60,11 @@ void find_shortest_path(struct node start, struct node finish, struct map *m)
 
         /* TODO: FIND MINIMUM*/ 
         struct node min_node = find_minimum(neighbors, 8);
+        printf("Current node : (%d; %d)\n", current_node.i, current_node.j);
+        printf("New node : (%d; %d)\n", min_node.i, min_node.j);
         current_node = g_map[min_node.i][min_node.j];
 
         free(neighbors);
-        //if (current_node.j + 1 < m->width)
-        //{
-            //current_node = g_map[current_node.i][current_node.j + 1];
-        //}
-        //else
-        //{
-            //break;
-        //}
         //counter++;
 
     }   
