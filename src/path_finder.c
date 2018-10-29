@@ -32,6 +32,21 @@ float get_cost_vector(struct vector2 v1, struct vector2 v2)
     return get_distance(v1.x, v2.x, v1.y, v2.y);
 }
 
+struct node find_minimum(struct node *neighbors, int size)
+{
+    float min = neighbors[0].f_cost;
+    int min_index = 0;
+    for (int i = 1; i < size; i++)
+    {
+        if (neighbors[i].f_cost < min)
+        {
+            min_index = i;
+            min = neighbors[i].f_cost;
+        }
+    }
+    return neighbors[min_index];
+}
+
 void find_shortest_path(struct node start, struct node finish, struct map *m)
 {
     struct node current_node = start;
@@ -39,7 +54,7 @@ void find_shortest_path(struct node start, struct node finish, struct map *m)
     //int counter = 0;
     while (1)
     {
-        g_map[current_node.i][current_node.j].type = 'V';
+        //g_map[current_node.i][current_node.j].type = 'V';
         //current_node.type = 'V';
         if ((current_node.pos.x != finish.pos.x && current_node.pos.y != finish.pos.y))
         {
@@ -48,38 +63,53 @@ void find_shortest_path(struct node start, struct node finish, struct map *m)
         //printf("Current node : (%f;%f)\n", current_node.pos.x, current_node.pos.y);
         printf("Current node : (%d;%d)\n", current_node.i, current_node.j);
         current_node.open = 2;
+
+        struct node *neighbors = malloc(sizeof(*neighbors) * 8);
+        /* TODO : check return value here*/
+        int index = 0;
         for (int a = -1; a <= 1; a++)
         {
             for (int b = -1; b <= 1; b++)
             {
                 if (a == 0 && b == 0)
                 {
-                    //printf("CONDITION ATTEINTE\n");
-                    //continue;
+                    continue;
                 }
-                
+
                 if (current_node.i + a >= 0 && current_node.j + b >= 0 
-                    && current_node.i + a < m->width
-                    && current_node.j + b < m->width)
+                        && current_node.i + a < m->width
+                        && current_node.j + b < m->width)
                 {
-                    printf("Current node : %d;%d\n", current_node.i, current_node.j);
+                    neighbors[index] = g_map[current_node.i + a][current_node.j + b];
                     g_map[current_node.i + a][current_node.j + b].type = 'V';
-                    //if (temp.type == '#' || temp.open == 1)
-                    //{
-                        //continue;
-                    //}       
-                    
+                    if (neighbors[index].type == '#' || neighbors[index].open == 2)
+                    {
+                        continue;
+                    }
+
+                    float g_cost = get_cost_vector(neighbors[index].pos, start.pos);
+                    float h_cost =get_cost_vector(finish.pos, neighbors[index].pos);
+
+                    neighbors[index].f_cost = g_cost + h_cost;
+
+                    index++;
                 }
             }
         }
-        if (current_node.j + 1 < m->width)
-        {
-            current_node = g_map[current_node.i][current_node.j + 1];
-        }
-        else
-        {
-            break;
-        }
+
+        /* TODO: FIND MINIMUM*/ 
+        struct node min_node = find_minimum(neighbors, 8);
+        current_node = g_map[min_node.i][min_node.j];
+
+        free(neighbors);
+        //if (current_node.j + 1 < m->width)
+        //{
+            //current_node = g_map[current_node.i][current_node.j + 1];
+        //}
+        //else
+        //{
+            //break;
+        //}
         //counter++;
 
     }   
