@@ -10,6 +10,7 @@
 void find_shortest_path(struct node start, struct node finish, struct map *m)
 {
     struct node current_node = start;
+
     printf("Start : (%f;%f)\nEnd : (%f;%f)\n", start.pos.x, start.pos.y, finish.pos.x, finish.pos.y);
     //int counter = 0;
     while (1)
@@ -53,10 +54,13 @@ void find_shortest_path(struct node start, struct node finish, struct map *m)
                         continue;
                     }
 
-                    float g_cost = get_cost_vector(neighbors[index].pos, start.pos);
-                    float h_cost =get_cost_vector(finish.pos, neighbors[index].pos);
+                    //float g_cost = get_cost_vector(neighbors[index].pos, current_node.pos) + current_node.g_cost;
+                    float g_cost = get_cost_vector(neighbors[index].pos, current_node.pos);
+                    float h_cost = get_cost_vector(finish.pos, neighbors[index].pos);
 
                     neighbors[index].f_cost = g_cost + h_cost;
+                    neighbors[index].g_cost = g_cost;
+                    neighbors[index].h_cost = h_cost;
 
                     index++;
                 }
