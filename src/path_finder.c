@@ -54,8 +54,8 @@ void find_shortest_path(struct node start, struct node finish, struct map *m)
                         continue;
                     }
 
-                    //float g_cost = get_cost_vector(neighbors[index].pos, current_node.pos) + current_node.g_cost;
-                    float g_cost = get_cost_vector(neighbors[index].pos, current_node.pos);
+                    float g_cost = get_cost_vector(neighbors[index].pos, current_node.pos) + current_node.g_cost;
+                    //float g_cost = get_cost_vector(neighbors[index].pos, current_node.pos);
                     float h_cost = get_cost_vector(finish.pos, neighbors[index].pos);
 
                     neighbors[index].f_cost = g_cost + h_cost;

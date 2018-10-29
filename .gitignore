@@ -7,3 +7,4 @@ viewer
 .config
 *.o
 *.so
+tests/create_map.c

@@ -38,9 +38,9 @@ enum move update(struct car *car)
 {
     if (!g_map)
     {
-        //map_init(car->map);
+        map_init(car->map);
     }
-    printf("Car angle is %.2f; %.2f\n", car->direction.x, car->direction.y);
+    //printf("Car angle is %.2f; %.2f\n", car->direction.x, car->direction.y);
     if (is_facing_obj(car, ROAD, 1) && is_facing_obj(car, ROAD, 2))
     {
         //if (car->speed.x > 0.05f || car->speed.y > 0.05f)
