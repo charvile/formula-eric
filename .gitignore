@@ -6,3 +6,4 @@ maps
 viewer
 .config
 *.o
+*.so
