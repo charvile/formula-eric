@@ -41,11 +41,11 @@ enum move update(struct car *car)
     }
     if (is_facing_obj(car, ROAD, 1) && is_facing_obj(car, ROAD, 2))
     {
-        //if (car->speed.x > 0.05f || car->speed.y > 0.05f)
-        //{
-            //return BRAKE;
-        //}
-        //return ACCELERATE;
+        if (car->speed.x > 0.05f || car->speed.y > 0.05f)
+        {
+            return BRAKE;
+        }
+        return ACCELERATE;
     }
     else if (is_facing_obj(car, ROAD, 1) && !is_facing_obj(car, ROAD, 2))
     {

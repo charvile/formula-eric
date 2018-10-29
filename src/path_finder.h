@@ -17,8 +17,10 @@ struct node
 
 struct node **map_init(struct map *map);
 
-void destroy_map(void);
+void destroy_map(int size);
 
 struct node **g_map;
+
+/* TODO: REMOVE GLOBAL VARIABLE, use static variable in update function*/
 
 #endif /* PATH_FINDER_H */

@@ -1,4 +1,5 @@
 #include "path_finder.h"
+#include "utilities.h"
 
 void draw_best_path(struct node start, struct node finish)
 {
@@ -13,12 +14,32 @@ void draw_best_path(struct node start, struct node finish)
 
 void set_checkpoints(struct node start, struct node finish)
 {
-    struct node current = start;
+    struct node *current = start.next;
 
-    while(current.pos.x != finish.pos.x && current.pos.y != finish.pos.y)
+    float current_angle = 0;
+    int count = 0;
+    while(!vector_cmp(current->pos, finish.pos))
     {
+        if (count == 0)
+        {
+            current_angle = get_angle_vector(current->pos, 
+                current->previous->pos);
+        }
 
+        float angle = get_angle_vector(current->pos, current->previous->pos);
+
+        if (angle != current_angle)
+        {
+            current->type = 'C';
+            current_angle = angle;
+        }
+        count++;
     }
 }
 
-void destroy_map(void);
+void destroy_map(int size)
+{
+    for (int i = 0; i < size; i++)
+    {
+    }
+}
