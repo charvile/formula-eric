@@ -15,10 +15,10 @@ Key : P : Progress | X : Done
     [ ] Test on custom maps
     [X] Submit for day1
 
-[ ] A star algorithm
-    [ ] Create structure
-    [ ] Create matrix
-    [ ] Implement algorithm
+[P] A star algorithm
+    [X] Create structure
+    [X] Create matrix
+    [P] Implement algorithm
     [ ] Test and print algorithm
     [ ] Adapt car behavior to shortest path
 
