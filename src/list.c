@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#define _INFINITY_ 2147483647
 
 struct list_node *init_list(struct node *node)
 {
@@ -14,6 +15,7 @@ struct list_node *init_list(struct node *node)
     ret->size = 1;
     ret->first = elt;
     elt->node = node;
+    elt->node->f_cost = _INFINITY_; 
     elt->next = NULL;
     return ret;
 }
@@ -64,6 +66,7 @@ struct list_node *remove_list(struct list_node *list, struct node *node)
         {
             temp2->next = temp->next;
             free(temp);
+            list->size--;
             return list;
         }
         temp2 = temp;
@@ -134,6 +137,8 @@ struct list_element *pop_list(struct list_node *list)
         }
         elt = elt->next;
     }
+    //printf("Min element is %f\n", min_elt->node->f_cost);
+    //list->size--;
     return min_elt;
 }
 
