@@ -31,7 +31,6 @@ struct node
 {
     char type;
     char open; /* 0 -> not seen | 1 -> open | 2 -> closed */
-    struct node *next; /* Position in matrix of following node*/
     struct node *previous; /* Position in matrix of previous node*/
     struct vector2 pos; /* Position on the map*/
     float f_cost;

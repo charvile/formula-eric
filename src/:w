@@ -5,8 +5,7 @@
 #include "path_finder.h"
 #include "utilities.h"
 
-static struct node *find_neighbors(struct node *node, int *size, struct map *m,
-    struct node *finish)
+static struct node *find_neighbors(struct node *node, int *size, struct map *m)
 {
     struct node *neighbors = malloc(sizeof(neighbors) * 8);
 
@@ -24,19 +23,21 @@ static struct node *find_neighbors(struct node *node, int *size, struct map *m,
                     && node->i + a < m->width
                     && node->j + b < m->width)
             {
-                printf("i :  %d | j = %d\n", node->i +a, node->j + b);
-                neighbors[*size] = g_map[node->i + a][node->j + b];
-                g_map[node->i + a][node->j + b].open = 1;
+                printf("i :  %d | j = %d\n", current_node.i +a, current_node.j + b);
+                neighbors[index] = g_map[current_node.i + a][current_node.j + b];
+                //g_map[current_node.i + a][current_node.j + b].type = 'V';
+                g_map[current_node.i + a][current_node.j + b].open = 1;
 
 
-                float g_cost = get_cost_vector(neighbors[*size].pos, node->pos) + node->g_cost;
-                float h_cost = get_cost_vector(finish->pos, neighbors[*size].pos);
+                float g_cost = get_cost_vector(neighbors[index].pos, current_node.pos) + current_node.g_cost;
+                //float g_cost = get_cost_vector(neighbors[index].pos, current_node.pos);
+                float h_cost = get_cost_vector(finish.pos, neighbors[index].pos);
 
-                neighbors[*size].f_cost = g_cost + h_cost;
-                neighbors[*size].g_cost = g_cost;
-                neighbors[*size].h_cost = h_cost;
+                neighbors[index].f_cost = g_cost + h_cost;
+                neighbors[index].g_cost = g_cost;
+                neighbors[index].h_cost = h_cost;
 
-                *size++;
+                index++;
             }
         }
     }
@@ -47,6 +48,7 @@ void find_shortest_path(struct node *start, struct node *finish, struct map *m)
     struct list_node *list_open = init_list(start);
     while (1)
     {
+
         struct node *current_node = pop_list(list_open)->node;
         current_node->open = 2;
 
@@ -55,7 +57,7 @@ void find_shortest_path(struct node *start, struct node *finish, struct map *m)
             break;
         }
         int size = 0;
-        struct node *neighbors = find_neighbors(current_node, &size, m, finish);
+        struct node *neighbors = find_neighbors(current_node, &size);
 
         for (int i = 0; i < size; i++)
         {
