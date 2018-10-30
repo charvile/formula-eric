@@ -10,6 +10,12 @@ static struct node *find_neighbors(struct node *node, int *size, struct map *m,
 {
     struct node *neighbors = malloc(sizeof(neighbors) * 8);
 
+    if (!neighbors)
+    {
+        fprintf(stderr, "Memory allocation error\n");
+        exit(1);
+    }
+
     for (int a = -1; a <= 1; a++)
     {
         for (int b = -1; b <= 1; b++)
@@ -36,10 +42,12 @@ static struct node *find_neighbors(struct node *node, int *size, struct map *m,
                 neighbors[*size].g_cost = g_cost;
                 neighbors[*size].h_cost = h_cost;
 
-                *size++;
+                *size += 1;
             }
         }
     }
+
+    return neighbors;
 }
 
 void find_shortest_path(struct node *start, struct node *finish, struct map *m)

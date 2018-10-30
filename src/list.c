@@ -141,4 +141,3 @@ struct list_element *pop_list(struct list_node *list)
 
 
 struct list_element *find_element(struct list_node *list, struct node *node);
-
