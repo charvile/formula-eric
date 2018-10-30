@@ -10,6 +10,8 @@ CHECKER=check
 GHOST=ghost
 LIB=libformulaone.so
 
+MAP_PATH=maps/lvl1_simple.frc
+
 all: $(LIB)
 
 $(LIB): CFLAGS += -fPIC
@@ -32,6 +34,9 @@ $(GHOST): LDLIBS += -L. -Lviewer -lformulaone -lformulaonecontrol -lm
 $(GHOST): CPPFLAGS += -Isrc
 $(GHOST): $(LIB) $(OBJS_GHOST)
 	$(LINK.c) -o $@ $(OBJS_GHOST) $(LDLIBS)
+
+test : $(CHECKER)
+	./$(CHECKER) $(MAP_PATH)
 
 clean:
 	$(RM) $(LIB) $(OBJS) $(OBJS_CHECK) $(OBJS_GHOST) $(CHECKER)

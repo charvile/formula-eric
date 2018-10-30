@@ -13,14 +13,14 @@ struct list_element
 struct list_node
 {
     size_t size;
-    struct node *first;
+    struct list_element *first;
 };
 
 /* NOTE: list functions*/
 
 struct list_node *init_list(struct node *node);
 struct list_node *insert(struct list_node *list, struct node *node);
-struct list_node *remove(struct list_node *list, struct node *node);
+struct list_node *remove_list(struct list_node *list, struct node *node);
 void destroy(struct list_node *list);
 struct list_element *pop_list(struct list_node *list);
 struct list_element *find_element(struct list_node *list, struct node *node);
