@@ -46,6 +46,7 @@ struct node *find_neighbors(struct node *node, int *size, struct map *m,struct n
 void destroy_map(int size);
 void find_shortest_path(struct node *start, struct node *finish, struct map *m);
 
+void draw_best_path(struct node *start, struct node *finish);
 struct node **g_map;
 
 /* TODO: REMOVE GLOBAL VARIABLE, use static variable in update function*/

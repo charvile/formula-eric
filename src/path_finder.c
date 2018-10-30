@@ -47,6 +47,7 @@ void find_shortest_path(struct node *start, struct node *finish, struct map *m)
             {
                 //neighbors[i].f_cost = get_cost_vector();
                 neighbors[i].previous = current_node;
+                g_map[neighbors[i].i][neighbors[i].j].previous = current_node;
                 //g_map[current_node->i][current_node->j].type = '@';
                 if (neighbors[i].open == 0)
                 {

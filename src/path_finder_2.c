@@ -3,14 +3,20 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-void draw_best_path(struct node start, struct node finish)
+void draw_best_path(struct node *start, struct node *finish)
 {
-    struct node current = finish;
+    struct node *current = finish;
 
-    while(current.pos.x != start.pos.x && current.pos.y != start.pos.y)
+    printf("Currently on %d;%d\n", current->i, current->j);
+    if (!current->previous)
     {
-        current = g_map[current.previous->i][current.previous->j]; 
-        g_map[current.i][current.j].type = '-';
+        puts("Previous not defined!");
+    }
+    while(!vector_cmp(current->pos, start->pos))
+    {
+        printf("Previous is %d;%d\n", current->previous->i, current->previous->j);
+        current = &g_map[current->previous->i][current->previous->j]; 
+        g_map[current->i][current->j].type = '-';
     }
 }
 

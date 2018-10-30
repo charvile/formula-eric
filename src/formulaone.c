@@ -62,6 +62,7 @@ struct node **map_init(struct map *m)
     }
 
     find_shortest_path(start, finish, m);
+    draw_best_path(start, finish);
     puts("DISPLAYING SHORTEST PATH:");
 
     for (int i = 0; i < mheight; i++)
