@@ -113,9 +113,8 @@ struct list_element *pop_list(struct list_node *list)
     float f_cost = elt->node->f_cost;
     float h_cost = elt->node->h_cost;
     struct list_element *min_elt = elt;
-    float min_f = f_cost;;
-    float min_h = h_cost;;
-    struct list_element *ret = elt;
+    float min_f = f_cost;
+    float min_h = h_cost;
     elt = elt->next;
     while (elt)
     {
@@ -133,10 +132,9 @@ struct list_element *pop_list(struct list_node *list)
                 min_elt = elt;
             }
         }
-        ret = elt;
         elt = elt->next;
     }
-    return ret;
+    return min_elt;
 }
 
 
