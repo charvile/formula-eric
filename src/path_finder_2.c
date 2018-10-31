@@ -15,35 +15,39 @@ void draw_best_path(struct node *start, struct node *finish)
     while(!vector_cmp(current->pos, start->pos))
     {
         printf("Previous is %d;%d\n", current->previous->i, current->previous->j);
-        current = &g_map[current->previous->i][current->previous->j]; 
+        current = &g_map[current->previous->i][current->previous->j];
         g_map[current->i][current->j].type = '-';
     }
 }
 
-void set_checkpoints(struct node start, struct node finish);
-/*{
-  struct node current = start;
+void set_checkpoints(struct node *start, struct node *finish)
+{
+    struct node *current = finish;
 
-  float current_angle = 0;
-  int count = 0;
-  while(!vector_cmp(current.pos, finish.pos))
-  {
-  if (count == 0)
-  {
-  current_angle = get_angle_vector(current.pos, 
-  current.previous->pos);
-  }
+    float current_angle = 0;
+    int count = 0;
+    while(!vector_cmp(current->pos, start->pos))
+    {
+        if (count == 0)
+        {
+            current_angle = get_angle_vector(current->pos,
+                    current->previous->pos);
+        }
 
-  float angle = get_angle_vector(current.pos, current.next->pos);
+        float angle = get_angle_vector(current->previous->pos, current->pos);
+        printf("Angle is %.3f\n", angle);
 
-  if (angle != current_angle)
-  {
-  current.type = 'C';
-  current_angle = angle;
-  }
-  count++;
-  }
-  }*/
+        if (angle != current_angle)
+        {
+            g_map[current->i][current->j].type = 'C';
+            current->type = 'C';
+            current_angle = angle;
+            count = 0;
+        }
+        count++;
+        current = current->previous;
+    }
+}
 
 void destroy_map(int size)
 {
@@ -72,7 +76,7 @@ struct node *find_neighbors(struct node *node, int *size, struct map *m,
     {
         for (int b = -1; b <= 1; b++)
         {
-            // TODO take diagonals into account, when possible 
+            // TODO take diagonals into account, when possible
             if (abs(a) == abs(b))
             {
                 continue;

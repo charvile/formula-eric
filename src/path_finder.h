@@ -47,6 +47,7 @@ void destroy_map(int size);
 void find_shortest_path(struct node *start, struct node *finish, struct map *m);
 
 void draw_best_path(struct node *start, struct node *finish);
+void set_checkpoints(struct node *start, struct node *finish);
 struct node **g_map;
 
 /* TODO: REMOVE GLOBAL VARIABLE, use static variable in update function*/

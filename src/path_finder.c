@@ -22,7 +22,6 @@ void find_shortest_path(struct node *start, struct node *finish, struct map *m)
             break;
         }
         int size = 0;
-        
 
         struct node *neighbors = find_neighbors(current_node, &size, m, finish);
         //for (int i = 0; i < size; i++)

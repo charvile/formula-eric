@@ -46,7 +46,7 @@ struct node **map_init(struct map *m)
             }
             else
             {
-                nodes[i][j].type = (map_get_floor(m, j, i) == ROAD) + '0';
+                nodes[i][j].type = '+';//(map_get_floor(m, j, i) == ROAD) + '0';
             }
         }
     }
@@ -63,6 +63,7 @@ struct node **map_init(struct map *m)
 
     find_shortest_path(start, finish, m);
     draw_best_path(start, finish);
+    set_checkpoints(start, finish);
     puts("DISPLAYING SHORTEST PATH:");
 
     for (int i = 0; i < mheight; i++)
