@@ -24,8 +24,8 @@ Key : P : Progress | X : Done
     [ ] Test and print algorithm
     [X] Set checkpoints
 
-[ ] Car steering
-    [ ] Find car position on matrix, from position on map
+[P] Car steering
+    [X] Find car position on matrix, from position on map
     [ ] Find distance to the next checkpoint
     [ ] Get angle to the next checkpoint
     [ ] Group all functions in a function that returns the next action,
@@ -37,8 +37,8 @@ Key : P : Progress | X : Done
 
 ==============================================================================
 
-[ ] Optimization
-    [ ] A star needs to take diagonals into account (either checkpoint setting
+[P] Optimization
+    [P] A star needs to take diagonals into account (either checkpoint setting
         or better A star)
     [ ]
     [ ]
