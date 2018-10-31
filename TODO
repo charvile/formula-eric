@@ -1,11 +1,13 @@
 Key : P : Progress | X : Done
 
-[ ] Setup
+===============================================================================
+
+[X] Setup
     [X] Read subject
     [X] Setup git
     [X] Run a first test with make run
-    [ ] Decide file architecture
-    [ ] Divide and conquer
+    [X] Decide file architecture
+    [X] Divide and conquer
 
 [ ] Granny
     [P] Decide proper algorithm
@@ -20,24 +22,26 @@ Key : P : Progress | X : Done
     [X] Create matrix
     [P] Implement algorithm
     [ ] Test and print algorithm
-    [ ] Set checkpoints 
+    [X] Set checkpoints
 
 [ ] Car steering
     [ ] Find car position on matrix, from position on map
-    [ ] Find distance to the next checkpoint 
+    [ ] Find distance to the next checkpoint
     [ ] Get angle to the next checkpoint
-    [ ] Group all functions in a function that returns the next action, 
+    [ ] Group all functions in a function that returns the next action,
         according to state and position of the car
 
 [ ] Testing
     [ ] Create random maps
     [ ] Launch test suites with a certain amount of randomly generated maps
- 
+
 ==============================================================================
+
 [ ] Optimization
-    [ ]  
-    [ ] 
-    [ ] 
+    [ ] A star needs to take diagonals into account (either checkpoint setting
+        or better A star)
+    [ ]
+    [ ]
 
 ===============================================================================
 [ ] Bugs

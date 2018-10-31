@@ -1,7 +1,7 @@
 CC=gcc
 CFLAGS=-Wall -Wextra -Werror -std=c99 -pedantic -g
 
-OBJS=src/formulaone.o src/path_finder.o src/path_finder_2.o src/utilities.o src/list.o #FIXME: add your obj files here
+OBJS=src/formulaone.o src/path_finder.o src/path_finder_2.o src/utilities.o src/list.o src/steering.o #FIXME: add your obj files here
 OBJS_CHECK=tests/check.o tests/utils.o
 OBJS_GHOST=tests/ghost.o tests/utils.o
 

@@ -6,8 +6,10 @@ enum move get_next_action(struct car *car);
 
 int is_at_desired_angle(struct car *car, float angle);
 
-float get_distance_to_next_checkpoint(struct car *car); /* DEFINE MACRO FOR SLOWING DOWN DISTANCE + MAX_SPEED */
+float get_distance_to_next_checkpoint(struct car *car);
 
 float get_angle_at_next_checkpoint(struct car *car);
+
+struct node *get_current_position(struct car *car);
 
 #endif /* ! STEERING_H */

@@ -1,6 +1,7 @@
 #include "control.h"
 #include <math.h>
 #include "path_finder.h"
+#include "steering.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -114,7 +115,7 @@ enum move update(struct car *car)
     {
         map_init(car->map);
     }
-    //printf("Car angle is %.2f; %.2f\n", car->direction.x, car->direction.y);
+    get_current_position(car);
     if (is_facing_obj(car, ROAD, 1) && is_facing_obj(car, ROAD, 2))
     {
         //if (car->speed.x > 0.05f || car->speed.y > 0.05f)

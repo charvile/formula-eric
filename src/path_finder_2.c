@@ -7,14 +7,10 @@ void draw_best_path(struct node *start, struct node *finish)
 {
     struct node *current = finish;
 
-    printf("Currently on %d;%d\n", current->i, current->j);
-    if (!current->previous)
-    {
-        puts("Previous not defined!");
-    }
+    //printf("Currently on %d;%d\n", current->i, current->j);
     while(!vector_cmp(current->pos, start->pos))
     {
-        printf("Previous is %d;%d\n", current->previous->i, current->previous->j);
+        //printf("Previous is %d;%d\n", current->previous->i, current->previous->j);
         current = &g_map[current->previous->i][current->previous->j];
         g_map[current->i][current->j].type = '-';
     }
@@ -35,7 +31,7 @@ void set_checkpoints(struct node *start, struct node *finish)
         }
 
         float angle = get_angle_vector(current->previous->pos, current->pos);
-        printf("Angle is %.3f\n", angle);
+        //printf("Angle is %.3f\n", angle);
 
         if (angle != current_angle)
         {
