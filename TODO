@@ -17,11 +17,11 @@ Key : P : Progress | X : Done
     [ ] Test on custom maps
     [X] Submit for day1
 
-[P] A star algorithm
+[X] A star algorithm
     [X] Create structure
     [X] Create matrix
     [P] Implement algorithm
-    [ ] Test and print algorithm
+    [X] Test and print algorithm
     [X] Set checkpoints
 
 [P] Car steering

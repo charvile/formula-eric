@@ -5,6 +5,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define KGRN  "\x1B[32m"
+#define RESET "\x1B[0m"
 struct node **map_init(struct map *m)
 {
     int mwidth = m->width;
@@ -71,7 +73,14 @@ struct node **map_init(struct map *m)
     {
         for (int j = 0; j < mwidth; j++)
         {
-            fprintf(stdout," %c", g_map[i][j].type);
+            if (g_map[i][j].type == '@' || g_map[i][j].type == 'C')
+            {
+                fprintf(stdout, "%s %c%s", KGRN, g_map[i][j].type, RESET);
+            }
+            else
+            {
+                fprintf(stdout," %c", g_map[i][j].type);
+            }   
         }
         fprintf(stdout,"\n");
     }
