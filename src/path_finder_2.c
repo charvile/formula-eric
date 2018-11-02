@@ -12,7 +12,7 @@ void draw_best_path(struct node *start, struct node *finish)
     {
         //printf("Previous is %d;%d\n", current->previous->i, current->previous->j);
         current = &g_map[current->previous->i][current->previous->j];
-        g_map[current->i][current->j].type = '-';
+        g_map[current->i][current->j].type = '@';
     }
 }
 
@@ -55,6 +55,16 @@ void destroy_map(int size)
     free(g_map);
 }
 
+int is_valid_diagonal(struct node *node, int a, int b)
+{
+    if (abs(a) == abs(b) && (g_map[node->i + a][node->j].type == '#' &&
+        g_map[node->i][node->j + b].type == '#'))
+    {
+        return 0;
+    }
+    return 1;
+}
+
 struct node *find_neighbors(struct node *node, int *size, struct map *m,
         struct node *finish)
 {
@@ -73,13 +83,14 @@ struct node *find_neighbors(struct node *node, int *size, struct map *m,
         for (int b = -1; b <= 1; b++)
         {
             // TODO take diagonals into account, when possible
-            if (abs(a) == abs(b))
+            if (a == 0 && b == 0)
             {
                 continue;
             }
             if (node->i + a >= 0 && node->j + b >= 0
                     && node->i + a < m->height
-                    && node->j + b < m->width)
+                    && node->j + b < m->width
+                    && is_valid_diagonal(node, a, b))
                 //      )
             {
                 neighbors[*size] = g_map[node->i + a][node->j + b];

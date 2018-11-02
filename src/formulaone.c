@@ -47,7 +47,7 @@ struct node **map_init(struct map *m)
             }
             else
             {
-                nodes[i][j].type = '+';//(map_get_floor(m, j, i) == ROAD) + '0';
+                nodes[i][j].type = ' ';//(map_get_floor(m, j, i) == ROAD) + '0';
             }
         }
     }

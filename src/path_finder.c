@@ -14,6 +14,7 @@ void find_shortest_path(struct node *start, struct node *finish, struct map *m)
         struct node *current_node = start = pop_list(list_open)->node;
         remove_list(list_open, current_node);
         //printf("Current node is : %d;%d\n", current_node->i, current_node->j);
+        //printf("Size of open is : %zu\n", list_open->size);
         current_node->open = 2;
 
         if (vector_cmp(current_node->pos, finish->pos))

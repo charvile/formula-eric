@@ -13,7 +13,7 @@ struct node *get_current_position(struct car *car)
     int i = floor(car->position.x);
     int j = floor(car->position.y);
 
-    printf("Car is on tile %d;%d\n", i, j);
+    //printf("Car is on tile %d;%d\n", i, j);
     return &g_map[i][j];
 }
 
