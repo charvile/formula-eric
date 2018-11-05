@@ -6,7 +6,10 @@
 #include <stdlib.h>
 
 #define KGRN  "\x1B[32m"
+#define KRED  "\x1B[31m"
+#define KBLU  "\x1B[34m"
 #define RESET "\x1B[0m"
+
 struct node **map_init(struct map *m)
 {
     int mwidth = m->width;
@@ -29,6 +32,7 @@ struct node **map_init(struct map *m)
             nodes[i][j].pos.y = i + 0.5;
             nodes[i][j].i = i;
             nodes[i][j].j = j;
+            nodes[i][j].next_checkpoint = NULL;
             if (map_get_floor(m, j, i) == FINISH)
             {
                 nodes[i][j].type = 'F';
@@ -74,6 +78,14 @@ struct node **map_init(struct map *m)
         for (int j = 0; j < mwidth; j++)
         {
             if (g_map[i][j].type == '@' || g_map[i][j].type == 'C')
+            {
+                fprintf(stdout, "%s %c%s", KBLU, g_map[i][j].type, RESET);
+            }
+            else if (g_map[i][j].type == '#')
+            {
+                fprintf(stdout, "%s %c%s", KRED, g_map[i][j].type, RESET);
+            }
+            else if (g_map[i][j].type == '"')
             {
                 fprintf(stdout, "%s %c%s", KGRN, g_map[i][j].type, RESET);
             }
@@ -124,7 +136,8 @@ enum move update(struct car *car)
     {
         map_init(car->map);
     }
-    get_current_position(car);
+
+    printf("Distance to next checkpoint is %f\n", get_distance_to_next_checkpoint(car));
     if (is_facing_obj(car, ROAD, 1) && is_facing_obj(car, ROAD, 2))
     {
         //if (car->speed.x > 0.05f || car->speed.y > 0.05f)

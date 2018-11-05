@@ -19,6 +19,7 @@ void draw_best_path(struct node *start, struct node *finish)
 void set_checkpoints(struct node *start, struct node *finish)
 {
     struct node *current = finish;
+    struct node *next = current;
 
     float current_angle = 0;
     int count = 0;
@@ -28,6 +29,7 @@ void set_checkpoints(struct node *start, struct node *finish)
         {
             current_angle = get_angle_vector(current->pos,
                     current->previous->pos);
+            g_map[current->i][current->j].next_checkpoint = current;
         }
 
         float angle = get_angle_vector(current->previous->pos, current->pos);
@@ -39,10 +41,13 @@ void set_checkpoints(struct node *start, struct node *finish)
             current->type = 'C';
             current_angle = angle;
             count = 0;
+            next = current;
         }
+        g_map[current->i][current->j].next_checkpoint = next;
         count++;
         current = current->previous;
     }
+    g_map[start->i][start->j].next_checkpoint = next;
 }
 
 void destroy_map(int size)

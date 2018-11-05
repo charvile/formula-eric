@@ -32,6 +32,7 @@ struct node
     char type;
     char open; /* 0 -> not seen | 1 -> open | 2 -> closed */
     struct node *previous; /* Position in matrix of previous node*/
+    struct node *next_checkpoint; /* Position in matrix of the next checkpoint*/
     struct vector2 pos; /* Position on the map*/
     float f_cost;
     float h_cost;
