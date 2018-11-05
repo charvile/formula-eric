@@ -4,7 +4,7 @@
 
 enum move get_next_action(struct car *car);
 
-int is_at_desired_angle(struct car *car, float angle);
+int is_at_desired_angle(struct car *car);
 
 float get_distance_to_next_checkpoint(struct car *car);
 

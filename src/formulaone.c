@@ -128,8 +128,6 @@ static int is_facing_obj(struct car *car, enum floortype obj, int distance)
     return 1;
 }
 
-int is_at_desired_angle(struct car *car, float angle);
-
 enum move update(struct car *car)
 {
     if (!g_map)
@@ -138,6 +136,7 @@ enum move update(struct car *car)
     }
 
     printf("Distance to next checkpoint is %f\n", get_distance_to_next_checkpoint(car));
+    printf("Angle at next checkpoint is %f\n", get_angle_at_next_checkpoint(car));
     if (is_facing_obj(car, ROAD, 1) && is_facing_obj(car, ROAD, 2))
     {
         //if (car->speed.x > 0.05f || car->speed.y > 0.05f)

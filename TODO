@@ -26,9 +26,9 @@ Key : P : Progress | X : Done
 
 [P] Car steering
     [X] Find car position on matrix, from position on map
-    [ ] Find distance to the next checkpoint
+    [X] Find distance to the next checkpoint
     [ ] Get angle to the next checkpoint
-    [ ] Group all functions in a function that returns the next action,
+    [P] Group all functions in a function that returns the next action,
         according to state and position of the car
 
 [ ] Testing
