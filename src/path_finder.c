@@ -33,8 +33,8 @@ void find_shortest_path(struct node *start, struct node *finish, struct map *m)
                 continue;
             }
 
-            float new_path = neighbors[i].f_cost;
-            float current_path = current_node->f_cost;
+            float new_path = neighbors[i].g_cost;
+            float current_path = current_node->g_cost;
 
             if (new_path < current_path || neighbors[i].open == 0)
             {
@@ -44,6 +44,7 @@ void find_shortest_path(struct node *start, struct node *finish, struct map *m)
                 if (neighbors[i].open == 0)
                 {
                     //printf("Adding %d;%d to the open list\n", neighbors[i].i, neighbors[i].j);
+                	g_map[neighbors[i].i][neighbors[i].j].open = 1;
                     list_open = insert(list_open, &neighbors[i]);
                 }
             }

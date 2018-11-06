@@ -99,7 +99,7 @@ struct node *find_neighbors(struct node *node, int *size, struct map *m,
                 //      )
             {
                 neighbors[*size] = g_map[node->i + a][node->j + b];
-                g_map[node->i + a][node->j + b].open = 1;
+                //g_map[node->i + a][node->j + b].open = 1;
 
                 float g_cost = get_cost_vector(neighbors[*size].pos, node->pos) + node->g_cost;
                 float h_cost = get_cost_vector(finish->pos, neighbors[*size].pos);
