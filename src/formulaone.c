@@ -96,6 +96,14 @@ struct node **map_init(struct map *m)
         }
         fprintf(stdout,"\n");
     }
+    puts("DISPLAYING CHECKPOINTS");
+    //struct node *temp = &g_map[start->i][start->j];
+    //while(temp && (temp->i != finish->j && temp->i != finish->j))
+    //{
+        //printf("Checkpoint : %d;%d\n", temp->i, temp->j);
+        //temp = &g_map[temp->next_checkpoint->i][temp->next_checkpoint->j];
+    //}
+
     puts("DONE");
     return nodes;
 }
