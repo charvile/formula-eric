@@ -66,6 +66,7 @@ float get_angle_3_pts(struct vector2 P1, struct vector2 P2, struct vector2 P3)
 
         if (cmp_vec(P1, P2) || cmp_vec(P2, P3) || cmp_vec(P1, P3))
         {
+            //puts("Two point are equal");
             return 0;
         }
 	struct vector2 V12;
