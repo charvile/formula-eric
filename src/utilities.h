@@ -16,4 +16,9 @@ struct node find_minimum(struct node *neighbors, int size);
 
 int vector_cmp(struct vector2 v1, struct vector2 v2);
 
+float scalar_product(struct vector2 V1, struct vector2 V2);
+
+float get_angle_3_pts(struct vector2 P1, struct vector2 P2, struct vector2 P3);
+
+
 #endif /* ! UTILITIES_H */
