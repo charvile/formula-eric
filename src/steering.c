@@ -4,7 +4,7 @@
 #include <math.h>
 #include <stdio.h>
 
-#define SLOW_DOWN_DISTANCE 3
+#define SLOW_DOWN_DISTANCE 1
 #define MAX_SPEED 0.25
 
 enum move get_next_action(struct car *car)
@@ -46,10 +46,10 @@ struct node *get_current_position(struct car *car)
 int is_at_desired_angle(struct car *car)
 {
     /* TODO : implement this function */
-    int desired_angle = round(get_angle_at_next_checkpoint(car));
-    //printf("Desired angle is %d\n", desired_angle);
+    int desired_angle = round(get_angle_at_next_checkpoint(car) *(180 / M_PI));
+    printf("Desired angle is %d\n", desired_angle);
     int car_angle = get_car_degree(car);
-    
+    printf("Car angle is %d\n", car_angle); 
     return desired_angle == car_angle;
 }
 
@@ -82,22 +82,26 @@ float get_angle_at_next_checkpoint(struct car *car)
     struct node *current = get_current_position(car);
     struct node *next = &g_map[current->next_checkpoint->i][current->next_checkpoint->j];
     struct node *following = &g_map[next->next_checkpoint->i][next->next_checkpoint->j];
-    printf("Current is: %d;%d\n", current->i, current->j);
-    printf("Next is: %d;%d\n", next->i, next->j);
-    printf("Following is: %d;%d\n", following->i, following->j);
+
+    //printf("Current is: %d;%d\n", current->i, current->j);
+    //printf("Next is: %d;%d\n", next->i, next->j);
+    //printf("Following is: %d;%d\n", following->i, following->j);
+    //putchar('\n');
+
 
     if (!next)
     {
-        puts("Cannot load next checkpoint");
+        //puts("Cannot load next checkpoint");
         return 0;
     }
     else if (!following)
     {
-        puts("Cannot load following checkpoint");
+        //puts("Cannot load following checkpoint");
         return 0;
     }
     else
     {
+
        return get_angle_3_pts(current->pos, next->pos, following->pos);
     }
 }

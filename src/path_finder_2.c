@@ -38,9 +38,13 @@ void set_checkpoints(struct node *start, struct node *finish)
         {
             g_map[current->i][current->j].type = 'C';
             current_angle = angle;
+            g_map[current->i][current->j].next_checkpoint = next;
             next = current;
         }
-        g_map[current->i][current->j].next_checkpoint = next;
+        else
+        {
+            g_map[current->i][current->j].next_checkpoint = next;
+        }
         count++;
         current = current->previous;
     }
