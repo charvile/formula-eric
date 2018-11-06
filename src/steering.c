@@ -31,19 +31,6 @@ enum move get_next_action(struct car *car)
     {
         return TURN_RIGHT;
     }
-    
-    
-
-    /*if (distance_to_checkpoint < 0.1)
-    {
-        if (is_at_desired_angle(car))
-        {
-            return ACCELERATE;
-        }
-        {
-            return TURN_RIGHT;
-        }
-    } */
 
     return DO_NOTHING;
 }
@@ -52,7 +39,7 @@ struct node *get_current_position(struct car *car)
 {
     int i = floor(car->position.x);
     int j = floor(car->position.y);
-
+    printf("Car position x:%d y:%d\n", i, j);
     return &g_map[j][i];
 }
 
@@ -60,6 +47,7 @@ int is_at_desired_angle(struct car *car)
 {
     /* TODO : implement this function */
     int desired_angle = round(get_angle_at_next_checkpoint(car));
+    //printf("Desired angle is %d\n", desired_angle);
     int car_angle = get_car_degree(car);
     
     return desired_angle == car_angle;
@@ -70,7 +58,7 @@ float get_distance_to_next_checkpoint(struct car *car)
     struct node *current = get_current_position(car);
     struct node *next_checkpoint = current->next_checkpoint;
 
-    if (!current->next_checkpoint)
+    if (!next_checkpoint)
     {
         puts("Cannot load next checkpoint");
     }
@@ -92,16 +80,20 @@ int get_car_degree(struct car *car)
 float get_angle_at_next_checkpoint(struct car *car)
 {
     struct node *current = get_current_position(car);
-    struct node *next = current->next_checkpoint;
-    struct node *following = next->next_checkpoint;
-    
-    //printf("Current is: %d;%d\n", current->i, current->j);
-    //printf("Next is: %d;%d\n", next->i, next->j);
-    //printf("Following is: %d;%d\n", following->i, following->j);
+    struct node *next = &g_map[current->next_checkpoint->i][current->next_checkpoint->j];
+    struct node *following = &g_map[next->next_checkpoint->i][next->next_checkpoint->j];
+    printf("Current is: %d;%d\n", current->i, current->j);
+    printf("Next is: %d;%d\n", next->i, next->j);
+    printf("Following is: %d;%d\n", following->i, following->j);
 
-    if (!current->next_checkpoint)
+    if (!next)
     {
         puts("Cannot load next checkpoint");
+        return 0;
+    }
+    else if (!following)
+    {
+        puts("Cannot load following checkpoint");
         return 0;
     }
     else

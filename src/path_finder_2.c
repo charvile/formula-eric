@@ -29,7 +29,6 @@ void set_checkpoints(struct node *start, struct node *finish)
         {
             current_angle = get_angle_vector(current->pos,
                     current->previous->pos);
-            g_map[current->i][current->j].next_checkpoint = current;
         }
 
         float angle = get_angle_vector(current->previous->pos, current->pos);
@@ -38,9 +37,7 @@ void set_checkpoints(struct node *start, struct node *finish)
         if (angle != current_angle)
         {
             g_map[current->i][current->j].type = 'C';
-            current->type = 'C';
             current_angle = angle;
-            count = 0;
             next = current;
         }
         g_map[current->i][current->j].next_checkpoint = next;
