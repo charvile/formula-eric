@@ -84,7 +84,7 @@ float get_angle_at_next_checkpoint(struct car *car)
     {
         float angle = get_angle_vector(car->direction, next_checkpoint->pos); 
         printf("Road slope is :%f\n", angle);
-        printf("Car angle is : %f\n", car->direction_angle);
+        printf("Car angle is : %f;%f\n", car->direction.x, car->direction.y);
         return 0;
     }
 }
