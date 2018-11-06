@@ -12,4 +12,6 @@ float get_angle_at_next_checkpoint(struct car *car);
 
 struct node *get_current_position(struct car *car);
 
+int get_car_degree(struct car *car);
+
 #endif /* ! STEERING_H */

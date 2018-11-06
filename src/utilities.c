@@ -1,5 +1,6 @@
 #include "utilities.h"
 #include <math.h>
+#include <stdio.h>
 
 float get_distance(float x1, float x2, float y1, float y2)
 {
@@ -55,10 +56,20 @@ float scalar_product(struct vector2 V1, struct vector2 V2)
 	return ret;
 }
 
+int cmp_vec(struct vector2 v1, struct vector2 v2)
+{
+    return (v1.x == v2.x && v1.y == v2.y);
+}
+
 float get_angle_3_pts(struct vector2 P1, struct vector2 P2, struct vector2 P3)
 {
-	float vector2 V12;
-	float vector2 V23;
+
+        if (cmp_vec(P1, P2) || cmp_vec(P2, P3) || cmp_vec(P1, P3))
+        {
+            return 0;
+        }
+	struct vector2 V12;
+	struct vector2 V23;
 	
 	/* we define the 2 vectors made by the 3 points */
 	V12.x = P2.x - P1.x;
@@ -74,6 +85,7 @@ float get_angle_3_pts(struct vector2 P1, struct vector2 P2, struct vector2 P3)
 	
 	/* result given in radians by acos */
 	float res = acos(product/(len_V12 * len_V23));
+        //printf("Res is %f\n", res);
 
 	return res;
 }
