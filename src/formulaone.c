@@ -135,8 +135,9 @@ enum move update(struct car *car)
         map_init(car->map);
     }
 
-    printf("Distance to next checkpoint is %f\n", get_distance_to_next_checkpoint(car));
-    printf("Angle at next checkpoint is %f\n", get_angle_at_next_checkpoint(car));
+    //printf("Distance to next checkpoint is %f\n", get_distance_to_next_checkpoint(car));
+    //printf("Angle at next checkpoint is %f\n", get_angle_at_next_checkpoint(car));
+    get_angle_at_next_checkpoint(car);
     if (is_facing_obj(car, ROAD, 1) && is_facing_obj(car, ROAD, 2))
     {
         //if (car->speed.x > 0.05f || car->speed.y > 0.05f)

@@ -70,10 +70,18 @@ float get_distance_to_next_checkpoint(struct car *car)
     return 0;
 }
 
+int get_car_degree(struct car *car)
+{
+    float degrees = (car->direction_angle * (180 / M_PI));
+    int ret = round(degrees);
+    ret %= 360;
+    return ret;
+}
+
 float get_angle_at_next_checkpoint(struct car *car)
 {
     struct node *current = get_current_position(car);
-    struct node *next_checkpoint = current->next_checkpoint;
+    //struct node *next_checkpoint = current->next_checkpoint;
 
     if (!current->next_checkpoint)
     {
@@ -82,9 +90,7 @@ float get_angle_at_next_checkpoint(struct car *car)
     }
     else
     {
-        float angle = get_angle_vector(car->direction, next_checkpoint->pos); 
-        printf("Road slope is :%f\n", angle);
-        printf("Car angle is : %f;%f\n", car->direction.x, car->direction.y);
+
         return 0;
     }
 }
