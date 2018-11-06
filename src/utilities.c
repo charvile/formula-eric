@@ -61,6 +61,42 @@ int cmp_vec(struct vector2 v1, struct vector2 v2)
     return (v1.x == v2.x && v1.y == v2.y);
 }
 
+float get_abs_angle_2_pts(struct vector2 P1, struct vector2 P2)
+{
+
+        if (cmp_vec(P1, P2))
+        {
+            //puts("The two points are equal");
+            return 0;
+        }
+	struct vector2 V12;
+	struct vector2 X01 = {1,0};
+	
+	/* we define the 2 vectors made by the 3 points */
+	V12.x = P2.x - P1.x;
+	V12.y = P2.y - P1.y;
+	printf("P1.x:%f P1.y:%f\n",P1.x, P1.y);
+	printf("P2.x:%f P2.y:%f\n",P2.x, P2.y);
+	printf("V12.x:%f V12.y:%f\n",V12.x, V12.y);
+	/* we compute the scalar product 2 ways to use the cosine of the 2 vectors */
+	float product = scalar_product(X01, V12);
+        printf("scalar product is %f\n", product);
+
+	float len_V12 = sqrt(pow(V12.x, 2) + pow(V12.y, 2));
+	float len_X01 = sqrt(pow(X01.x, 2) + pow(X01.y, 2));
+	
+	/* result given in radians by acos */
+	float res = acos(product/(len_V12 * len_X01));
+        printf("Res is %f\n", res);
+	
+	if (V12.y < 0)
+	{
+		res = 2 *  M_PI - res;
+	}
+
+	return res;
+}
+
 float get_angle_3_pts(struct vector2 P1, struct vector2 P2, struct vector2 P3)
 {
 

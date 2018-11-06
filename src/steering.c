@@ -37,9 +37,11 @@ enum move get_next_action(struct car *car)
 
 struct node *get_current_position(struct car *car)
 {
-    int i = floor(car->position.x);
-    int j = floor(car->position.y);
-    printf("Car position x:%d y:%d\n", i, j);
+    float x = car->position.x;
+    int i = floor(x);
+    float y = car->position.y;
+    int j = floor(y);
+    printf("Car position x:%f y:%f\n", x, y);
     return &g_map[j][i];
 }
 
@@ -81,7 +83,7 @@ float get_angle_at_next_checkpoint(struct car *car)
 {
     struct node *current = get_current_position(car);
     struct node *next = &g_map[current->next_checkpoint->i][current->next_checkpoint->j];
-    struct node *following = &g_map[next->next_checkpoint->i][next->next_checkpoint->j];
+    //struct node *following = &g_map[next->next_checkpoint->i][next->next_checkpoint->j];
 
     //printf("Current is: %d;%d\n", current->i, current->j);
     //printf("Next is: %d;%d\n", next->i, next->j);
@@ -94,14 +96,14 @@ float get_angle_at_next_checkpoint(struct car *car)
         //puts("Cannot load next checkpoint");
         return 0;
     }
-    else if (!following)
-    {
+    //else if (!following)
+    //{
         //puts("Cannot load following checkpoint");
-        return 0;
-    }
+    //    return 0;
+    //}
     else
     {
 
-       return get_angle_3_pts(current->pos, next->pos, following->pos);
+       return get_abs_angle_2_pts(current->pos, next->pos);
     }
 }

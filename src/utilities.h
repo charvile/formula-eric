@@ -20,5 +20,7 @@ float scalar_product(struct vector2 V1, struct vector2 V2);
 
 float get_angle_3_pts(struct vector2 P1, struct vector2 P2, struct vector2 P3);
 
+float get_abs_angle_2_pts(struct vector2 P1, struct vector2 P2);
+
 
 #endif /* ! UTILITIES_H */
