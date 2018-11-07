@@ -13,9 +13,19 @@ enum move get_next_action(struct car *car)
     /* TODO : check if next checkpoint is arrive : if true, accelerate like crazy*/
     if (is_at_desired_angle(car))
     {
-        if (distance_to_checkpoint < SLOW_DOWN_DISTANCE)
+        puts("AT DESIRED ANGLE");
+        printf("Distance to next checkpoint : %f\n", distance_to_checkpoint);
+        if (car->speed.x != 0 && distance_to_checkpoint <= SLOW_DOWN_DISTANCE)
         {
             return BRAKE;
+        }
+        else if (car->speed.x == 0 && distance_to_checkpoint <= SLOW_DOWN_DISTANCE)
+        {
+            if (car->speed.x > MAX_SPEED)
+            {
+                return BRAKE;
+            }
+            return ACCELERATE;
         }
         /* TODO : control speed here*/
         if (distance_to_checkpoint > SLOW_DOWN_DISTANCE)
