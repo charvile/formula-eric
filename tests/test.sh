@@ -52,9 +52,9 @@ printf "================ FAIL SUMMARY ===============\n"
 printf "=============================================\n"
 
 if [ ${#FAILED_TESTS[@]} ] ; then
-echo "${red}${bold}Failed tests: ${reset}"
+echo "${red}${bold}Failed tests : ${reset}"
     for failed in ${FAILED_TESTS[@]} ; do
-        echo "${red}$failed"
+        echo "${red} * $failed"
     done
 fi
 echo ${reset}
