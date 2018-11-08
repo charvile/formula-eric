@@ -27,9 +27,15 @@ Key : P : Progress | X : Done
 [P] Car steering
     [X] Find car position on matrix, from position on map
     [X] Find distance to the next checkpoint
-    [ ] Get angle to the next checkpoint
-    [P] Group all functions in a function that returns the next action,
+    [X] Get angle to the next checkpoint
+    [X] Group all functions in a function that returns the next action,
         according to state and position of the car
+    [ ] Fix angles
+
+[ ] Memory management and coding style
+    [ ] Free g_map when we reach the finish line
+    [ ] Coding style pass
+    [ ] Remove global variable
 
 [ ] Testing
     [ ] Create random maps
