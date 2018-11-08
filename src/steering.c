@@ -22,7 +22,7 @@ enum move get_next_action(struct car *car)
     //int desired_angle = round(get_angle_at_next_checkpoint(car) * (180 / M_PI));
 
     //printf("Car is on matrix : %d;%d\n", p->j, p->i);
-    //printf("Car is on position : %f;%f\n", car->position.x, car->position.y);
+    printf("Car is on position : %f;%f\n", car->position.x, car->position.y);
     //printf("Car angle :%d\n", car_angle);
     //printf("Desired angle :%d\n", desired_angle);
 
@@ -42,7 +42,7 @@ enum move get_next_action(struct car *car)
         else if (car->speed.x == 0 && distance_to_checkpoint
             <= SLOW_DOWN_DISTANCE)
         {
-            if (car->speed.x > MAX_SPEED)
+            if (car->speed.x || car->speed.y> MAX_SPEED)
             {
                 return BRAKE;
             }
@@ -50,7 +50,7 @@ enum move get_next_action(struct car *car)
         }
         if (distance_to_checkpoint > SLOW_DOWN_DISTANCE)
         {
-            if (car->speed.x >= MAX_SPEED)
+            if (car->speed.x || car->speed.y> MAX_SPEED)
             {
                 return BRAKE;
             }
@@ -64,17 +64,17 @@ enum move get_next_action(struct car *car)
     else
     {
         //puts("NOT AT DESIRED ANGLE");
-        /*if (car_angle == 0)
-        {
-            car_angle = 360;
-        }
-        float diff_angle = abs(car_angle - desired_angle);
-        printf("Desired angle :%d\n", desired_angle);
-        printf("Car angle :%d\n\n", abs(car_angle));
-        if (diff_angle < 180)
-        {
-            return TURN_LEFT;
-        }*/
+        //if (car_angle == 0)
+        //{
+          //  car_angle = 360;
+        //}
+        //float diff_angle = abs(car_angle - desired_angle);
+        //printf("Desired angle :%d\n", desired_angle);
+        //printf("Car angle :%d\n\n", abs(car_angle));
+        //if (diff_angle < 180)
+        //{
+          //  return TURN_LEFT;
+        //}*/
         return TURN_RIGHT;
     }
 
@@ -95,6 +95,7 @@ struct node *get_current_position(struct car *car)
 int is_at_desired_angle(struct car *car)
 {
     int desired_angle = round(get_angle_at_next_checkpoint(car) * (180 / M_PI));
+    desired_angle %= 360;
     //printf("Desired angle is %d\n", desired_angle);
     int car_angle = get_car_degree(car);
     //printf("Car angle is %d\n", car_angle);
