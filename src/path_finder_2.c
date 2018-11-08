@@ -51,9 +51,9 @@ void set_checkpoints(struct node *start, struct node *finish)
     g_map[start->i][start->j].next_checkpoint = next;
 }
 
-void destroy_map(int size)
+void destroy_map(void)
 {
-    for (int i = 0; i < size; i++)
+    for (int i = 0; g_map[i]; i++)
     {
         free(g_map[i]);
     }

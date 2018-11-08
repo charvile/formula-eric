@@ -91,7 +91,7 @@ struct node **map_init(struct map *m)
             else
             {
                 fprintf(stdout," %c", g_map[i][j].type);
-            }   
+            }
         }
         fprintf(stdout,"\n");
     }

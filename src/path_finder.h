@@ -44,7 +44,7 @@ struct node
 struct node **map_init(struct map *map);
 struct node *find_neighbors(struct node *node, int *size, struct map *m,struct node *finish);
 
-void destroy_map(int size);
+void destroy_map(void);
 void find_shortest_path(struct node *start, struct node *finish, struct map *m);
 
 void draw_best_path(struct node *start, struct node *finish);
