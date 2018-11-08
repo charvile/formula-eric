@@ -5,18 +5,19 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#define SLOW_DOWN_DISTANCE 1
+#define SLOW_DOWN_DISTANCE 0.5
 #define MAX_SPEED 0.05
 
 enum move get_next_action(struct car *car)
 {
     float distance_to_checkpoint = get_distance_to_next_checkpoint(car);
     struct node *p= get_current_position(car);
+    int car_angle = get_car_degree(car);
+    int desired_angle = round(get_angle_at_next_checkpoint(car) * (180 / M_PI));
+
     printf("Car is on matrix : %d;%d\n", p->j, p->i);
     printf("Car is on position : %f;%f\n", car->position.x, car->position.y);
-    int car_angle = get_car_degree(car);
     printf("Car angle :%d\n", car_angle);
-    int desired_angle = round(get_angle_at_next_checkpoint(car) * (180 / M_PI));
     printf("Desired angle :%d\n", desired_angle);
 
     /*TODO:check if next checkpoint is arrive:if true, accelerate like crazy*/
@@ -112,6 +113,11 @@ int get_car_degree(struct car *car)
 float get_angle_at_next_checkpoint(struct car *car)
 {
     struct node *cur = get_current_position(car);
+
+    if (!cur->next_checkpoint)
+    {
+        return 0;
+    }
     struct node *nxt = &g_map[cur->next_checkpoint->i][cur->next_checkpoint->j];
     struct vector2 cur_pos_x_y = car->position;
 
