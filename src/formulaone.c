@@ -21,7 +21,6 @@ struct node **map_init(struct map *m)
 
     struct node **nodes = malloc(sizeof(void *) * mheight);
 
-
     for (int i = 0; i < mheight; i++)
     {
         nodes[i] = malloc(sizeof(struct node) * mwidth);
