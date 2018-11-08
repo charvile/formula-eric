@@ -8,12 +8,18 @@
 #define SLOW_DOWN_DISTANCE 0.5
 #define MAX_SPEED 0.05
 
+static int is_on_finish(struct car *car)
+{
+    //printf("Type is %c\n", get_current_position(car)->type);
+    return get_current_position(car)->type == 'F';
+}
+
 enum move get_next_action(struct car *car)
 {
     float distance_to_checkpoint = get_distance_to_next_checkpoint(car);
     //struct node *p= get_current_position(car);
-    int car_angle = get_car_degree(car);
-    int desired_angle = round(get_angle_at_next_checkpoint(car) * (180 / M_PI));
+    //int car_angle = get_car_degree(car);
+    //int desired_angle = round(get_angle_at_next_checkpoint(car) * (180 / M_PI));
 
     //printf("Car is on matrix : %d;%d\n", p->j, p->i);
     //printf("Car is on position : %f;%f\n", car->position.x, car->position.y);
@@ -22,6 +28,10 @@ enum move get_next_action(struct car *car)
 
     /*TODO:check if next checkpoint is arrive:if true, accelerate like crazy*/
     //printf("Distance to next checkpoint : %f\n", distance_to_checkpoint);
+    if (is_on_finish(car))
+    {
+        puts("ARRIVED ON FINISH");
+    }
     if (is_at_desired_angle(car))
     {
         //puts("AT DESIRED ANGLE");
@@ -54,17 +64,23 @@ enum move get_next_action(struct car *car)
     else
     {
         //puts("NOT AT DESIRED ANGLE");
+        /*if (car_angle == 0)
+        {
+            car_angle = 360;
+        }
+        float diff_angle = abs(car_angle - desired_angle);
         printf("Desired angle :%d\n", desired_angle);
-        printf("Car angle :%d\n\n", car_angle);
-        if (desired_angle >= abs(car_angle - 179))
+        printf("Car angle :%d\n\n", abs(car_angle));
+        if (diff_angle < 180)
         {
             return TURN_LEFT;
-        }
+        }*/
         return TURN_RIGHT;
     }
 
     return DO_NOTHING;
 }
+
 
 struct node *get_current_position(struct car *car)
 {
