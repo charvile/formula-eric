@@ -36,7 +36,7 @@ $(GHOST): $(LIB) $(OBJS_GHOST)
 	$(LINK.c) -o $@ $(OBJS_GHOST) $(LDLIBS)
 
 test : $(CHECKER)
-	./$(CHECKER) $(MAP_PATH)
+	tests/test.sh
 
 clean:
 	$(RM) $(LIB) $(OBJS) $(OBJS_CHECK) $(OBJS_GHOST) $(CHECKER)
