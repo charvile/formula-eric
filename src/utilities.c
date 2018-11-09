@@ -92,6 +92,20 @@ float get_abs_angle_2_pts(struct vector2 P1, struct vector2 P2)
     return res;
 }
 
+float det(struct vector2 V1, struct vector2 V2)
+{
+	return V1.x * V2.y - V1.y * V2.x;
+}
+
+struct vector2 make_vector(struct vector2 P1, struct vector2 P2)
+{
+	struct vector2 vec;
+	vec.x = P2.x - P1.y;
+	vec.y = P2.y - P1.y;
+	return vec;
+}
+
+
 float get_angle_3_pts(struct vector2 P1, struct vector2 P2, struct vector2 P3)
 {
 
@@ -121,3 +135,5 @@ float get_angle_3_pts(struct vector2 P1, struct vector2 P2, struct vector2 P3)
 
     return res;
 }
+
+

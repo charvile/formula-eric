@@ -14,4 +14,6 @@ struct node *get_current_position(struct car *car);
 
 int get_car_degree(struct car *car);
 
+int turn_left(struct car *car);
+
 #endif /* ! STEERING_H */

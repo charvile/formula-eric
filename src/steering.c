@@ -75,7 +75,11 @@ enum move get_next_action(struct car *car)
         //{
           //  return TURN_LEFT;
         //}*/
-        return TURN_RIGHT;
+	if (turn_left(car))
+	{
+		return TURN_LEFT;
+	}
+	return TURN_RIGHT;
     }
 
     return DO_NOTHING;
@@ -146,4 +150,22 @@ float get_angle_at_next_checkpoint(struct car *car)
     {
        return get_abs_angle_2_pts(cur_pos_x_y, nxt->pos);
     }
+}
+
+int turn_left(struct car *car)
+{
+    struct node *cur = get_current_position(car);
+    if (!cur->next_checkpoint)
+    {
+	return 1;
+    }
+    struct node *nxt = &g_map[cur->next_checkpoint->i][cur->next_checkpoint->j];
+    struct vector2 cur_pos_x_y = car->position;
+    struct vector2 car_direction = car->direction;
+    struct vector2 desired_direction = make_vector(cur_pos_x_y, nxt->pos);
+    if (det(car_direction, desired_direction) < 0)
+    {
+	return 1;
+    }
+    return 0;
 }
